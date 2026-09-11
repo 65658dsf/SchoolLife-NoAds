@@ -1,0 +1,5 @@
+.analysis/
+__pycache__/
+*.pyc
+output/
+gpsh.apk
