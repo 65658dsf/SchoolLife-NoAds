@@ -2,20 +2,27 @@
 
 基于原始 `base.apk` 制作的去广告版本，包名为 `com.qiekj.user`，版本号为 `1.139.0`（versionCode：234）。
 
-**验证状态：2026-09-11，用户反馈已完成真机测试，可以正常使用。**
+**验证状态：2026-09-11，用户确认基础功能可用；2026-09-12 补充发现定位停留在北京、已授权仍提示“获取定位权限失败”。定位修复测试包待真机复测。**
 
 ## 安装包
 
-- [去广告 APK](output/base-noads-1.139.0.apk)
-- [原始 APK](base.apk)自己去下一下吧，太大了传不上来，理论来说1.139.0及其以下版本的都可以用
+- [定位修复测试 APK](output/胖乖生活-noads-locationfix-1.139.0.apk)
+- [首版去广告 APK](output/乖胖生活-noads-1.139.0.apk)
+- 原始 APK 需自行准备。脚本只接受下文 SHA-256 对应的 1.139.0 原包，未验证其他版本。
 - [广告定位报告](广告定位报告.md)
 
-去广告 APK 大小：241,997,063 字节，约 230.79 MiB。
+首版去广告 APK 大小：241,997,063 字节，约 230.79 MiB。
 
 SHA-256：
 
 ```text
 28e03e201dc434994171ae24ccbeecc46c22b40a9319701fcb70f651b898570f
+```
+
+定位修复测试包 SHA-256：
+
+```text
+d25ae1b9fb12a82149f9a1a711805fde8691275931ba6811c2ad51bc6409dc11
 ```
 
 ## 去广告范围
@@ -30,7 +37,27 @@ SHA-256：
 | 收银台和设备运行中推广 | 停止加载第三方下载任务卡、相关图片推广 |
 | 商城列表广告 | 隐藏广告类型条目，保留正常商品类型的绑定逻辑 |
 
-共过滤 **70 个明确广告位**，修改 **73 个既有方法**，新增 3 个辅助类。混合使用的业务配置、导航入口和未知广告位键采用保留策略，并对已确认的广告展示入口单独处理。
+广告补丁共过滤 **70 个明确广告位**，修改 **73 个既有方法**，新增 3 个辅助类。混合使用的业务配置、导航入口和未知广告位键采用保留策略，并对已确认的广告展示入口单独处理。
+
+## 定位修复
+
+原应用在部分定位回调中，将高德返回的任意定位错误都提示为“获取定位权限失败”；该提示不代表系统权限一定被拒绝。无有效缓存时，应用默认使用北京坐标 `39.903179, 116.397755` 和行政区码 `110101`，定位失败后不会更新它们。
+
+高德 Key 绑定包名与签名 SHA-1，重新签名可能导致鉴权失败；本次没有取得手机运行日志，尚不能确定实际错误码。绑定规则见 [高德官方 Key 说明](https://developer.amap.com/api/android-location-sdk/guide/create-project/get-key/)。
+
+定位补丁保留原高德定位；失败或 6 秒未返回时，在已有系统定位权限下尝试 Android GPS、网络等位置提供器。仅使用真实位置，校验缓存时效和模拟位置，转换到应用使用的坐标系；请求总超时 25 秒，完成或页面销毁后清理监听器。
+
+系统定位结果通过系统 Geocoder 查询地址，最多等待 3 秒。取得新坐标时更新位置缓存，防止部分旧回调只改经纬度、仍保留北京地址和区码；原误导提示改为显示实际错误类别与错误码。补丁未修改高德 Key、SDK 鉴权或系统权限规则。
+
+**限制：**系统逆地理服务不可用时，可能只有坐标、暂时没有地址。系统地址不包含可靠的高德行政区码，补丁会留空，依赖行政区码的天气或城市服务仍需复测。高德地图、POI 检索等独立服务的签名鉴权不由系统定位补丁解决。
+
+定位辅助代码通过 10 组离线 JVM 行为测试，覆盖成功、错误、超时、权限缺失、取消、缓存时效、模拟位置拒绝及缓存同步。测试使用 Android/高德替身，不代表真机定位已恢复。可重复运行：
+
+```powershell
+python ".\补丁文件\test_location.py"
+```
+
+测试输出保存在 `.analysis/location-tests`。修复包已完成 DEX 组装、仅两个目标 DEX 变更的条目校验及签名验证，仍需手机实际定位复测。
 
 ## 对正常功能的处理
 
@@ -46,7 +73,7 @@ SHA-256：
 
 后续更新本修改版时，应继续使用本次本地签名证书。同样，切回官方原版通常需要先卸载本修改版。Android 的签名规则见 [官方应用签名说明](https://developer.android.com/studio/publish/app-signing)。
 
-用户已反馈当前真机可以正常使用；其他设备、系统版本、第三方登录或商城服务仍可能存在签名兼容性差异。后续服务端新增广告、网页内动态广告以及其他 App 版本不在本次验证范围内。
+定位修复测试包复用首版去广告包的本地证书，可以覆盖首版修改包安装，保留应用数据。其他设备、系统版本、第三方登录或商城服务仍可能存在签名兼容性差异。后续服务端新增广告、网页内动态广告以及其他 App 版本不在本次验证范围内。
 
 ## 构建与校验记录
 
@@ -78,16 +105,22 @@ SHA-256：
 │   ├── patch_config.py
 │   ├── patch_sdk.py
 │   ├── patch_ui.py
+│   ├── patch_location.py          # 定位回退、缓存与错误提示修复
+│   ├── test_location.py           # 可复现的离线定位行为测试
+│   ├── location-src/              # 定位辅助类的 Java 源码
+│   ├── location-stubs/            # 仅编译时用的 API 声明，不打包
 │   ├── package_apk.py
 │   └── DecompileApp.java           # 可选的 Java 源码导出工具
 ├── .analysis/                      # 自动生成
-│   ├── tools/                     # Apktool、签名工具；可选 JADX
+│   ├── tools/                     # Apktool、签名工具、Android API、D8；可选 JADX
 │   ├── decompiled/                # 使用 --decompile 时生成
 │   └── noads/
 │       ├── decoded-v2/             # smali 工作副本及 DEX 构建产物
 │       ├── config-backup/          # 以下三个目录保留修改前的 smali
 │       ├── sdk-backup/
 │       ├── ui-backup/
+│       ├── location-backup/        # 定位补丁应用前的 smali
+│       ├── location-build/         # Java/D8 编译产物与日志
 │       ├── local-signing.p12       # 本地签名私钥，首次构建生成
 │       └── local-signing.pass      # 对应密码文件
 └── output/                         # 签名后的 APK
@@ -95,22 +128,23 @@ SHA-256：
 
 ## 从原始 APK 生成 .analysis
 
-以下命令在 **Windows PowerShell、项目根目录** 中运行。准备 Python 3.10 或更高版本、JDK 21，并将 `python`、`java`、`keytool` 加入 PATH；本项目使用 Python 3.14.6 和 JDK 21 验证。无需安装额外的 Python 包。
+以下命令在 **Windows PowerShell、项目根目录** 中运行。准备 Python 3.10 或更高版本、JDK 21，并将 `python`、`java`、`javac`、`keytool` 加入 PATH；本项目使用 Python 3.14.6 和 JDK 21 验证。无需安装额外的 Python 包。
 
 ```powershell
 python --version
 java -version
+javac -version
 keytool -help
 ```
 
-1. 将原始安装包放到项目根目录，命名为 `base.apk`。脚本会核对上文的原包 SHA-256，只接受本次分析的 1.139.0 原包。
+1. 将原始安装包放到项目根目录，命名为 `base.apk`；不存在时也接受本地文件名 `gpsh.apk`。脚本会核对上文的原包 SHA-256，只接受本次分析的 1.139.0 原包。
 2. 执行准备脚本：
 
    ```powershell
    python ".\补丁文件\prepare_analysis.py"
    ```
 
-脚本自动创建 `.analysis/tools` 和 `.analysis/noads`，从官方 GitHub Releases 下载固定版本的 Apktool 3.0.3、uber-apk-signer 1.3.0，校验 SHA-256，并从后者提取 `apksigner.jar`。然后生成精简输入包并用 Apktool 解码，得到 `.analysis/noads/decoded-v2`。这些文件已经足够应用补丁和重新构建 APK。
+脚本自动创建 `.analysis/tools` 和 `.analysis/noads`，从官方 GitHub Releases 下载 Apktool 3.0.3、uber-apk-signer 1.3.0，并从 Google 的仓库下载 Android 35 API 声明包、R8/D8 8.7.18。所有文件均校验固定 SHA-256，签名工具 `apksigner.jar` 从 uber-apk-signer 提取。然后生成精简输入包并用 Apktool 解码，得到 `.analysis/noads/decoded-v2`。这些文件已经足够应用补丁和重新构建 APK。
 
 精简输入包只包含 Manifest、资源表、`classes4.dex`、`classes5.dex`，并将原包中较小的 `classes2.dex` 作为 `classes.dex` 占位，以便 Apktool 识别多 DEX。**占位 DEX 仅用于解码；最终打包只替换原包的 `classes4.dex`、`classes5.dex`。**
 
@@ -122,7 +156,7 @@ python ".\补丁文件\prepare_analysis.py" --decompile
 
 这会下载 JADX 1.5.6，将资源导出到 `.analysis/decompiled/resources`，将 `com.qiekj.user`、`com.qiekeji.pgad` 和 `com.qiekj.App` 的 Java 源码导出到 `.analysis/decompiled/sources`。JADX 对部分复杂方法可能报告反编译错误，详情见 `.analysis/decompile-app.log`；补丁直接处理 smali，不依赖这些 Java 文件。
 
-首次运行需要能访问 GitHub，后续会校验并复用工具缓存。下载失败时，也可按 [准备脚本中的固定下载地址](补丁文件/prepare_analysis.py) 手动下载到 `.analysis/tools`，保持文件名一致后重试。已有完整的 `decoded-v2` 会被保留；若解码中断，先将不完整的目录改名留存，再重跑准备命令。希望从头重建时，可先将整个 `.analysis` 改名留存，再重新运行。
+首次运行需要能访问 GitHub 和 Google 工具仓库，后续会校验并复用工具缓存。下载失败时，可按 [准备脚本中的下载地址](补丁文件/prepare_analysis.py) 手动下载到 `.analysis/tools`，保持文件名一致后重试；Android API 的 Gitiles 地址返回 Base64 文本，需要先解码成 `android-35.jar`。已有完整的 `decoded-v2` 会被保留；若解码中断，先将不完整的目录改名留存，再重跑准备命令。希望从头重建时，可先将整个 `.analysis` 改名留存，再重新运行。
 
 ## 应用补丁并生成 APK
 
@@ -132,7 +166,9 @@ python ".\补丁文件\prepare_analysis.py" --decompile
 python ".\补丁文件\build_apk.py"
 ```
 
-脚本依次应用配置、SDK、UI 补丁，重新组装 DEX，替换原包中的两个目标 DEX，再生成或复用本地签名证书，签名并验证 APK。默认输出 `output/base-noads-1.139.0.apk`。
+脚本依次应用配置、SDK、UI、定位补丁，编译定位 Java 辅助类并合入 `classes4.dex`，重新组装 DEX，替换原包中的两个目标 DEX，再生成或复用本地签名证书，签名并验证 APK。默认输出 `output/base-noads-1.139.0.apk`。仅编译时使用的 API 声明不会进入 APK。
+
+重复构建时，会先校验并恢复上一轮定位补丁覆盖的文件，再按相同顺序应用各层补丁，避免与 UI 补丁的完整性校验冲突。请使用 `build_apk.py` 串联执行。
 
 **已有同名 APK 时脚本会停止，避免覆盖。** 需要再次构建时指定新文件名：
 
@@ -151,6 +187,10 @@ python ".\补丁文件\build_apk.py" --output "output/base-noads-1.139.0-rebuild
 | [patch_config.py](补丁文件/patch_config.py) | 从 smali 读取广告位定义，应用 70 个广告位过滤规则 |
 | [patch_sdk.py](补丁文件/patch_sdk.py) | SDK 加载、展示及失败回调补丁 |
 | [patch_ui.py](补丁文件/patch_ui.py) | 开屏、页面广告、扫码及推广卡片补丁 |
+| [patch_location.py](补丁文件/patch_location.py) | 为 20 个应用类中的 24 处定位客户端接入系统定位回退，修复缓存与错误文案 |
+| [location-src](补丁文件/location-src/) | 系统定位、地址解析、缓存同步的可编辑 Java 源码 |
+| [location-stubs](补丁文件/location-stubs/) | 与原 APK 方法签名匹配的编译声明，不包含 SDK 实现、不打入 APK |
+| [test_location.py](补丁文件/test_location.py) | 运行实际定位辅助源码的 10 组离线行为测试 |
 | [package_apk.py](补丁文件/package_apk.py) | 替换目标 DEX、对齐并生成未签名 APK |
 | [DecompileApp.java](补丁文件/DecompileApp.java) | 导出指定应用包的 Java 源码，供阅读分析 |
 
@@ -161,6 +201,7 @@ python ".\补丁文件\build_apk.py" --output "output/base-noads-1.139.0-rebuild
 | `config-method-changes.json` | 广告位过滤和保留规则 |
 | `sdk-changes.json` | SDK 方法级变更记录 |
 | `ui-changes.json` | 页面方法级变更记录 |
+| `location-changes.json` | 定位补丁的修改前后哈希、客户端数和辅助类清单 |
 | `package-verification.json` | 原包条目与替换结果的哈希记录 |
 | `signature-verification.txt` | 修改版 APK 的签名验证结果 |
 | `decode-v2.log`、`build.log`、`signing.log` | 解码、组装、签名日志 |

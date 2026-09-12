@@ -29,7 +29,10 @@ def build(output: Path) -> None:
     if not (DECODED / "apktool.yml").exists():
         raise RuntimeError("No decoded workspace. Run prepare_analysis.py first.")
     scripts = Path(__file__).resolve().parent
-    for name, extra in (("patch_config.py", []), ("patch_sdk.py", ["--apply"]), ("patch_ui.py", [])):
+    # The location layer also touches classes whose advertising methods were
+    # patched. Restore that layer first so each patch can verify its own input.
+    subprocess.run([sys.executable, str(scripts / "patch_location.py"), "--restore"], cwd=ROOT, check=True)
+    for name, extra in (("patch_config.py", []), ("patch_sdk.py", ["--apply"]), ("patch_ui.py", []), ("patch_location.py", [])):
         subprocess.run([sys.executable, str(scripts / name), *extra], cwd=ROOT, check=True)
     run_logged([
         java, "-Xmx4g", "-jar", str(APKTOOL), "b", "--no-apk", "-j", "8", str(DECODED),

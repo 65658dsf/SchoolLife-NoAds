@@ -7,6 +7,7 @@ Existing decoded files, backups, signing keys and output APKs are preserved.
 from __future__ import annotations
 
 import argparse
+import base64
 import hashlib
 from pathlib import Path
 import shutil
@@ -19,11 +20,19 @@ ANALYSIS = ROOT / ".analysis"
 TOOLS = ANALYSIS / "tools"
 WORK = ANALYSIS / "noads"
 DECODED = WORK / "decoded-v2"
-APK = ROOT / "base.apk"
+APK = ROOT / ("base.apk" if (ROOT / "base.apk").is_file() else "gpsh.apk")
 SOURCE_SHA256 = "68cb64ecbe15e0daf26bfbf7b0fc05d72850a5d5a068ed50565e73d923c97024"
 APKTOOL = TOOLS / "apktool_3.0.3.jar"
 SIGNER = TOOLS / "apksigner.jar"
 DOWNLOADS = {
+    "android-35.jar": (
+        "https://android.googlesource.com/platform/prebuilts/sdk/+/refs/heads/main/35/public/android.jar?format=TEXT",
+        "ee568219aa3754977207a8fd849fdbf3a299658dd26dd0907d39ca830587f8aa",
+    ),
+    "r8-8.7.18.jar": (
+        "https://dl.google.com/dl/android/maven2/com/android/tools/r8/8.7.18/r8-8.7.18.jar",
+        "58366f77067207c39a17d469de7b05701d2877212a9c55201bcb0af43e59e903",
+    ),
     "apktool_3.0.3.jar": (
         "https://github.com/iBotPeaches/Apktool/releases/download/v3.0.3/apktool_3.0.3.jar",
         "dbf930b076c6b9be08d57c449cacefc3bdd6b71ebd59b3066fc0e1f5b14f9423",
@@ -75,7 +84,10 @@ def download(name: str) -> Path:
     partial = target.with_name(target.name + ".part")
     request = urllib.request.Request(url, headers={"User-Agent": "PGSH-NoAds-build"})
     with urllib.request.urlopen(request, timeout=60) as response, partial.open("wb") as output:
-        shutil.copyfileobj(response, output)
+        if name == "android-35.jar":
+            output.write(base64.b64decode(response.read()))
+        else:
+            shutil.copyfileobj(response, output)
     if sha256(partial) != expected:
         raise RuntimeError(f"Downloaded tool checksum mismatch: {partial}")
     partial.replace(target)
@@ -97,6 +109,8 @@ def prepare(decompile: bool = False) -> None:
     verify_source()
     WORK.mkdir(parents=True, exist_ok=True)
     download("apktool_3.0.3.jar")
+    download("android-35.jar")
+    download("r8-8.7.18.jar")
     uber = download("uber-apk-signer-1.3.0.jar")
     if not SIGNER.exists():
         with zipfile.ZipFile(uber) as archive:

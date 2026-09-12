@@ -5,6 +5,7 @@ This script does not sign or install the APK.
 """
 from pathlib import Path
 import zipfile, copy, struct, hashlib, json
+from prepare_analysis import APK, verify_source
 
 ROOT=Path(__file__).resolve().parent.parent
 WORK=ROOT/'.analysis/noads'
@@ -12,7 +13,8 @@ OUTPUT=ROOT/'output'
 OUTPUT.mkdir(exist_ok=True)
 replacements={name:WORK/'decoded-v2/build/apk'/name for name in ['classes4.dex','classes5.dex']}
 assert all(p.exists() and p.stat().st_size>1000000 for p in replacements.values())
-input_apk=ROOT/'base.apk'
+verify_source()
+input_apk=APK
 unsigned=WORK/'base-noads-unsigned.apk'
 ledger=[]
 def digest(b):return hashlib.sha256(b).hexdigest()
