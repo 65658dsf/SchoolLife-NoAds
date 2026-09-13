@@ -1,0 +1,21 @@
+{
+  "schema": "local-expected-signing-certificate-v1",
+  "source_sha256": "a49e20a7b6d4f6d1fa3788081a8cb62625957fa9fd5b1df31a1fa8ddbfc1cf50",
+  "final_sha256": "5cb4e7ef3adc7ca9642edabf86f2170d0d9d031b57a4300117a7049737b55689",
+  "configuration_offset": 66488,
+  "configuration_length": 254,
+  "certificate_ciphertext_offset": 66498,
+  "certificate_value_length": 32,
+  "old_expected_md5": "C62C38BE109D2A72528C307BDFC21E34",
+  "new_expected_md5": "6693563C906323213F14A44F14264E62",
+  "signing_certificate_sha256": "9fd21b3789a9db641fa59ee24f352754d11db2646d728c3e2367407a48ec0149",
+  "ciphertext_before_hex": "23e795861767497914aa98fbc5491b84506163ccb89c3447e9028345e0385eff",
+  "ciphertext_after_hex": "56e79ef61169387f1caa978cc53b1e8756156abbca9837439c70f241e5385bf9",
+  "outer_checksum_before_hex": "35b466dadb774f4211c9426c4991e2cc6be910c1ac4b0394",
+  "outer_checksum_after_hex": "22b50fe2acd0d1772077382fcc1abff54fcc9d1d4990ce49",
+  "changed_bytes": 52,
+  "other_configuration_fields_unchanged": true,
+  "native_code_unchanged": true,
+  "signature_check_still_enabled": true,
+  "runtime_verified": false
+}

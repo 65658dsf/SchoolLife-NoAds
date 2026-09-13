@@ -1,0 +1,19 @@
+{
+  "scope": "Read-only independent final APK/certificate/config audit",
+  "passed": 11,
+  "native_libraries_compared": 133,
+  "checks": {
+    "original_source_unchanged": true,
+    "first_output_unchanged": true,
+    "second_output_matches_record": true,
+    "actual_v2_certificate_matches_export": true,
+    "actual_first_second_v2_certificates_identical": true,
+    "actual_v2_md5_matches_config_record": true,
+    "actual_v2_sha256_matches_config_record": true,
+    "same_certificate_record_consistent": true,
+    "all_native_libraries_unchanged": true,
+    "actual_packaged_config_certificate_matches_actual_signer": true,
+    "actual_packaged_other_configuration_bytes_unchanged": true
+  },
+  "runtime_verified": false
+}

@@ -1,0 +1,175 @@
+{
+  "scope": "Recovered native instructions at 0xf1488 through 0xf14e0; synthetic certificate digests; no Android runtime test",
+  "cases": [
+    {
+      "expected": "C62C38BE109D2A72528C307BDFC21E34",
+      "actual": "C62C38BE109D2A72528C307BDFC21E34",
+      "risk0": false,
+      "steps": 74,
+      "compare_calls": [
+        {
+          "left": "C62C38BE109D2A72528C307BDFC21E34",
+          "right": "C62C38BE109D2A72528C307BDFC21E34"
+        }
+      ],
+      "pc": "0xf14ec"
+    },
+    {
+      "expected": "C62C38BE109D2A72528C307BDFC21E34",
+      "actual": "6693563C906323213F14A44F14264E62",
+      "risk0": true,
+      "steps": 364,
+      "compare_calls": [
+        {
+          "left": "C62C38BE109D2A72528C307BDFC21E34",
+          "right": "6693563C906323213F14A44F14264E62"
+        },
+        {
+          "left": "C62C",
+          "right": "NONE"
+        }
+      ],
+      "pc": "0x111004"
+    },
+    {
+      "expected": "C62C38BE109D2A72528C307BDFC21E34",
+      "actual": "0123456789ABCDEF0123456789ABCDEF",
+      "risk0": true,
+      "steps": 364,
+      "compare_calls": [
+        {
+          "left": "C62C38BE109D2A72528C307BDFC21E34",
+          "right": "0123456789ABCDEF0123456789ABCDEF"
+        },
+        {
+          "left": "C62C",
+          "right": "NONE"
+        }
+      ],
+      "pc": "0x111004"
+    },
+    {
+      "expected": "6693563C906323213F14A44F14264E62",
+      "actual": "C62C38BE109D2A72528C307BDFC21E34",
+      "risk0": true,
+      "steps": 364,
+      "compare_calls": [
+        {
+          "left": "6693563C906323213F14A44F14264E62",
+          "right": "C62C38BE109D2A72528C307BDFC21E34"
+        },
+        {
+          "left": "6693",
+          "right": "NONE"
+        }
+      ],
+      "pc": "0x111004"
+    },
+    {
+      "expected": "6693563C906323213F14A44F14264E62",
+      "actual": "6693563C906323213F14A44F14264E62",
+      "risk0": false,
+      "steps": 74,
+      "compare_calls": [
+        {
+          "left": "6693563C906323213F14A44F14264E62",
+          "right": "6693563C906323213F14A44F14264E62"
+        }
+      ],
+      "pc": "0xf14ec"
+    },
+    {
+      "expected": "6693563C906323213F14A44F14264E62",
+      "actual": "0123456789ABCDEF0123456789ABCDEF",
+      "risk0": true,
+      "steps": 364,
+      "compare_calls": [
+        {
+          "left": "6693563C906323213F14A44F14264E62",
+          "right": "0123456789ABCDEF0123456789ABCDEF"
+        },
+        {
+          "left": "6693",
+          "right": "NONE"
+        }
+      ],
+      "pc": "0x111004"
+    },
+    {
+      "expected": "NONE",
+      "actual": "C62C38BE109D2A72528C307BDFC21E34",
+      "risk0": false,
+      "steps": 361,
+      "compare_calls": [
+        {
+          "left": "NONE",
+          "right": "C62C"
+        },
+        {
+          "left": "NONE",
+          "right": "NONE"
+        }
+      ],
+      "pc": "0xf14ec"
+    },
+    {
+      "expected": "NONE",
+      "actual": "6693563C906323213F14A44F14264E62",
+      "risk0": false,
+      "steps": 361,
+      "compare_calls": [
+        {
+          "left": "NONE",
+          "right": "6693"
+        },
+        {
+          "left": "NONE",
+          "right": "NONE"
+        }
+      ],
+      "pc": "0xf14ec"
+    },
+    {
+      "expected": "NONE",
+      "actual": "0123456789ABCDEF0123456789ABCDEF",
+      "risk0": false,
+      "steps": 361,
+      "compare_calls": [
+        {
+          "left": "NONE",
+          "right": "0123"
+        },
+        {
+          "left": "NONE",
+          "right": "NONE"
+        }
+      ],
+      "pc": "0xf14ec"
+    },
+    {
+      "expected": "NONE",
+      "actual": "",
+      "risk0": false,
+      "steps": 74,
+      "compare_calls": [],
+      "pc": "0xf14ec"
+    },
+    {
+      "expected": "C62C38BE109D2A72528C307BDFC21E34",
+      "actual": "",
+      "risk0": false,
+      "steps": 74,
+      "compare_calls": [],
+      "pc": "0xf14ec"
+    },
+    {
+      "expected": "6693563C906323213F14A44F14264E62",
+      "actual": "",
+      "risk0": false,
+      "steps": 74,
+      "compare_calls": [],
+      "pc": "0xf14ec"
+    }
+  ],
+  "passed": 12
+}

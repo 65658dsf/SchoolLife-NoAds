@@ -1,0 +1,497 @@
+{
+  "schema": "noads-static-tests-v1",
+  "status": "PASS",
+  "passed_checks": 17,
+  "android_runtime_verified": false,
+  "limitations": [
+    "No installation, ART verification or device UI/run-flow test performed.",
+    "The callback body is not executed; simulation models a normally returning callback.",
+    "Protected native code behavior and signature-dependent service compatibility remain untested."
+  ],
+  "source_apk_sha256": "14e004e0001747ea49712a12d8657ad25eaf027de729b1e573d620a4bed345a1",
+  "final_classes_dex_sha256": "a49e20a7b6d4f6d1fa3788081a8cb62625957fa9fd5b1df31a1fa8ddbfc1cf50",
+  "checks": [
+    {
+      "test": "Only five original instruction arrays and outer bytes 8:32 changed; all code_item headers preserved",
+      "result": "PASS",
+      "target_count": 5,
+      "changed_bytes": 1055,
+      "allowed_ranges": [
+        {
+          "start": "0x8",
+          "end_exclusive": "0x20"
+        },
+        {
+          "start": "0x3d8cc70",
+          "end_exclusive": "0x3d8cec8"
+        },
+        {
+          "start": "0x3d8cf14",
+          "end_exclusive": "0x3d8cfa6"
+        },
+        {
+          "start": "0x3d937c0",
+          "end_exclusive": "0x3d938b2"
+        },
+        {
+          "start": "0x3e82cb0",
+          "end_exclusive": "0x3e82d2a"
+        },
+        {
+          "start": "0x3e89fd8",
+          "end_exclusive": "0x3e8a052"
+        }
+      ]
+    },
+    {
+      "test": "DEX header checksums valid",
+      "result": "PASS",
+      "artifact": "outer_classes.dex",
+      "sha256": "a49e20a7b6d4f6d1fa3788081a8cb62625957fa9fd5b1df31a1fa8ddbfc1cf50"
+    },
+    {
+      "test": "DEX header checksums valid",
+      "result": "PASS",
+      "artifact": "readable_embedded-08.dex",
+      "sha256": "8490f563a94ea56916b01883a0abb2a9b495e9ebc4b9b6b9a204d44b379c21c4"
+    },
+    {
+      "test": "All method IDs, declarations, access flags, string/type/prototype indices and section offsets retained",
+      "result": "PASS"
+    },
+    {
+      "test": "Typed opcode execution and terminal NOP padding",
+      "result": "PASS",
+      "signature": "Lcom/zjwh/android_wh_physicalfitness/advertise/AdManager;->checkCanLoad(Lcom/zjwh/android_wh_physicalfitness/advertise/AdPosition;Z)Z",
+      "behavior": "returns false for both sampled valid parameter states; instruction trace reads no parameters"
+    },
+    {
+      "test": "Typed opcode execution and terminal NOP padding",
+      "result": "PASS",
+      "signature": "Lcom/zjwh/android_wh_physicalfitness/advertise/AdManager;->isSlotAllowed(Ljava/util/List;II)Z",
+      "behavior": "returns false for both sampled valid parameter states; instruction trace reads no parameters"
+    },
+    {
+      "test": "Typed opcode execution and terminal NOP padding",
+      "result": "PASS",
+      "signature": "Lcom/zjwh/android_wh_physicalfitness/advertise/guandian/GuandianAdProvider;->loadVideoAd(Landroid/app/Activity;Ljava/lang/String;Lkotlin/jvm/functions/Function2;)V",
+      "behavior": "clears loading and calls original p3 (v26) exactly once with (Boolean.FALSE, Boolean.FALSE)"
+    },
+    {
+      "test": "Typed opcode execution and terminal NOP padding",
+      "result": "PASS",
+      "signature": "Lcom/zjwh/android_wh_physicalfitness/mvi/home/fragment/HomeFragment$setAdBanner$1$openAdDeferred$1;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "behavior": "returns initialized boxed Integer(0), verified through original embedded-07 helper constructor"
+    },
+    {
+      "test": "Typed opcode execution and terminal NOP padding",
+      "result": "PASS",
+      "signature": "Lcom/zjwh/android_wh_physicalfitness/mvi/home/fragment/SportFragment$setAdBanner$1$openAdDeferred$1;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "behavior": "returns initialized boxed Integer(0), verified through original embedded-07 helper constructor"
+    },
+    {
+      "test": "Mutation: p2=v25 cannot masquerade as Function2 callback",
+      "result": "PASS",
+      "rejection": "v0 type Ljava/lang/String; incompatible with Lkotlin/jvm/functions/Function2;"
+    },
+    {
+      "test": "Mutation: return-object cannot implement a boolean return",
+      "result": "PASS",
+      "rejection": "return-object incompatible with signature"
+    },
+    {
+      "test": "Mutation: non-NOP code after the terminal return is detected",
+      "result": "PASS",
+      "rejection": "non-NOP instruction remains after return"
+    },
+    {
+      "test": "Unsupported source classes.dex hash rejected",
+      "result": "PASS",
+      "rejection": "Unsupported original classes.dex"
+    },
+    {
+      "test": "Unsupported recovered DEX hash rejected",
+      "result": "PASS",
+      "rejection": "Unexpected recovered index; regenerate from the supported APK"
+    },
+    {
+      "test": "Native declaration cannot be patched",
+      "result": "PASS",
+      "rejection": "no editable code (native/abstract/absent): Lcom/zjwh/android_wh_physicalfitness/activity/RunPlanActivity$runModel$2;->invoke()Lcom/zjwh/android_wh_physicalfitness/entity/homepage/RunModel;"
+    },
+    {
+      "test": "Overlapping repeat patch rejected",
+      "result": "PASS",
+      "rejection": "code_item overlaps an existing patch"
+    },
+    {
+      "test": "Source APK and recovered verification inputs remain unchanged",
+      "result": "PASS"
+    }
+  ],
+  "semantic_results": [
+    {
+      "signature": "Lcom/zjwh/android_wh_physicalfitness/advertise/AdManager;->checkCanLoad(Lcom/zjwh/android_wh_physicalfitness/advertise/AdPosition;Z)Z",
+      "behavior": "returns false for both sampled valid parameter states; instruction trace reads no parameters",
+      "execution": {
+        "instructions": [
+          {
+            "pc": 0,
+            "opcode": "0x12",
+            "method": "Lcom/zjwh/android_wh_physicalfitness/advertise/AdManager;->checkCanLoad(Lcom/zjwh/android_wh_physicalfitness/advertise/AdPosition;Z)Z",
+            "instruction": "const/4",
+            "destination": 0,
+            "literal": 0
+          },
+          {
+            "pc": 1,
+            "opcode": "0xf",
+            "method": "Lcom/zjwh/android_wh_physicalfitness/advertise/AdManager;->checkCanLoad(Lcom/zjwh/android_wh_physicalfitness/advertise/AdPosition;Z)Z",
+            "instruction": "return",
+            "register": 0
+          }
+        ],
+        "return_code_unit": 1,
+        "nop_padding_code_units": 298,
+        "parameter_start_register": 11,
+        "result": {
+          "category": "integer",
+          "descriptor": "I",
+          "value": 0,
+          "initialized": true
+        }
+      },
+      "events": [],
+      "resolved_references": []
+    },
+    {
+      "signature": "Lcom/zjwh/android_wh_physicalfitness/advertise/AdManager;->isSlotAllowed(Ljava/util/List;II)Z",
+      "behavior": "returns false for both sampled valid parameter states; instruction trace reads no parameters",
+      "execution": {
+        "instructions": [
+          {
+            "pc": 0,
+            "opcode": "0x12",
+            "method": "Lcom/zjwh/android_wh_physicalfitness/advertise/AdManager;->isSlotAllowed(Ljava/util/List;II)Z",
+            "instruction": "const/4",
+            "destination": 0,
+            "literal": 0
+          },
+          {
+            "pc": 1,
+            "opcode": "0xf",
+            "method": "Lcom/zjwh/android_wh_physicalfitness/advertise/AdManager;->isSlotAllowed(Ljava/util/List;II)Z",
+            "instruction": "return",
+            "register": 0
+          }
+        ],
+        "return_code_unit": 1,
+        "nop_padding_code_units": 71,
+        "parameter_start_register": 5,
+        "result": {
+          "category": "integer",
+          "descriptor": "I",
+          "value": 0,
+          "initialized": true
+        }
+      },
+      "events": [],
+      "resolved_references": []
+    },
+    {
+      "signature": "Lcom/zjwh/android_wh_physicalfitness/advertise/guandian/GuandianAdProvider;->loadVideoAd(Landroid/app/Activity;Ljava/lang/String;Lkotlin/jvm/functions/Function2;)V",
+      "behavior": "clears loading and calls original p3 (v26) exactly once with (Boolean.FALSE, Boolean.FALSE)",
+      "execution": {
+        "instructions": [
+          {
+            "pc": 0,
+            "opcode": "0x12",
+            "method": "Lcom/zjwh/android_wh_physicalfitness/advertise/guandian/GuandianAdProvider;->loadVideoAd(Landroid/app/Activity;Ljava/lang/String;Lkotlin/jvm/functions/Function2;)V",
+            "instruction": "const/4",
+            "destination": 0,
+            "literal": 0
+          },
+          {
+            "pc": 1,
+            "opcode": "0x6a",
+            "method": "Lcom/zjwh/android_wh_physicalfitness/advertise/guandian/GuandianAdProvider;->loadVideoAd(Landroid/app/Activity;Ljava/lang/String;Lkotlin/jvm/functions/Function2;)V",
+            "instruction": "sput-boolean",
+            "source": 0,
+            "field": "Lcom/zjwh/android_wh_physicalfitness/advertise/guandian/GuandianAdProvider;->easyRewardVideoAdLoading:Z"
+          },
+          {
+            "pc": 3,
+            "opcode": "0x8",
+            "method": "Lcom/zjwh/android_wh_physicalfitness/advertise/guandian/GuandianAdProvider;->loadVideoAd(Landroid/app/Activity;Ljava/lang/String;Lkotlin/jvm/functions/Function2;)V",
+            "instruction": "move-object/from16",
+            "destination": 0,
+            "source": 26,
+            "source_origin": "parameter_p3"
+          },
+          {
+            "pc": 5,
+            "opcode": "0x62",
+            "method": "Lcom/zjwh/android_wh_physicalfitness/advertise/guandian/GuandianAdProvider;->loadVideoAd(Landroid/app/Activity;Ljava/lang/String;Lkotlin/jvm/functions/Function2;)V",
+            "instruction": "sget-object",
+            "destination": 1,
+            "field": "Ljava/lang/Boolean;->FALSE:Ljava/lang/Boolean;"
+          },
+          {
+            "pc": 7,
+            "opcode": "0x72",
+            "method": "Lcom/zjwh/android_wh_physicalfitness/advertise/guandian/GuandianAdProvider;->loadVideoAd(Landroid/app/Activity;Ljava/lang/String;Lkotlin/jvm/functions/Function2;)V",
+            "instruction": "invoke-interface",
+            "registers": [
+              0,
+              1,
+              1
+            ],
+            "called": "Lkotlin/jvm/functions/Function2;->invoke(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;"
+          },
+          {
+            "pc": 10,
+            "opcode": "0xe",
+            "method": "Lcom/zjwh/android_wh_physicalfitness/advertise/guandian/GuandianAdProvider;->loadVideoAd(Landroid/app/Activity;Ljava/lang/String;Lkotlin/jvm/functions/Function2;)V",
+            "instruction": "return-void"
+          }
+        ],
+        "return_code_unit": 10,
+        "nop_padding_code_units": 110,
+        "parameter_start_register": 23,
+        "result": null
+      },
+      "events": [
+        {
+          "kind": "field_write",
+          "field": "Lcom/zjwh/android_wh_physicalfitness/advertise/guandian/GuandianAdProvider;->easyRewardVideoAdLoading:Z",
+          "value": false
+        },
+        {
+          "kind": "callback",
+          "receiver": "parameter_p3",
+          "arguments": [
+            false,
+            false
+          ],
+          "loading_when_called": false
+        }
+      ],
+      "resolved_references": [
+        {
+          "kind": "field",
+          "dex": "embedded-08-patched",
+          "index": 23948,
+          "signature": "Lcom/zjwh/android_wh_physicalfitness/advertise/guandian/GuandianAdProvider;->easyRewardVideoAdLoading:Z"
+        },
+        {
+          "kind": "field",
+          "dex": "embedded-08-patched",
+          "index": 64793,
+          "signature": "Ljava/lang/Boolean;->FALSE:Ljava/lang/Boolean;"
+        },
+        {
+          "kind": "method",
+          "dex": "embedded-08-patched",
+          "index": 42910,
+          "signature": "Lkotlin/jvm/functions/Function2;->invoke(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;"
+        }
+      ]
+    },
+    {
+      "signature": "Lcom/zjwh/android_wh_physicalfitness/mvi/home/fragment/HomeFragment$setAdBanner$1$openAdDeferred$1;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "behavior": "returns initialized boxed Integer(0), verified through original embedded-07 helper constructor",
+      "execution": {
+        "instructions": [
+          {
+            "pc": 0,
+            "opcode": "0x12",
+            "method": "Lcom/zjwh/android_wh_physicalfitness/mvi/home/fragment/HomeFragment$setAdBanner$1$openAdDeferred$1;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+            "instruction": "const/4",
+            "destination": 0,
+            "literal": 0
+          },
+          {
+            "pc": 1,
+            "opcode": "0x71",
+            "method": "Lcom/zjwh/android_wh_physicalfitness/mvi/home/fragment/HomeFragment$setAdBanner$1$openAdDeferred$1;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+            "instruction": "invoke-static",
+            "registers": [
+              0
+            ],
+            "called": "Lkotlin/coroutines/jvm/internal/OooO00o;->OooO0Oo(I)Ljava/lang/Integer;",
+            "helper_trace": [
+              {
+                "pc": 0,
+                "opcode": "0x22",
+                "method": "Lkotlin/coroutines/jvm/internal/OooO00o;->OooO0Oo(I)Ljava/lang/Integer;",
+                "instruction": "new-instance",
+                "destination": 0,
+                "type": "Ljava/lang/Integer;"
+              },
+              {
+                "pc": 2,
+                "opcode": "0x70",
+                "method": "Lkotlin/coroutines/jvm/internal/OooO00o;->OooO0Oo(I)Ljava/lang/Integer;",
+                "instruction": "invoke-direct",
+                "registers": [
+                  0,
+                  1
+                ],
+                "called": "Ljava/lang/Integer;-><init>(I)V"
+              },
+              {
+                "pc": 5,
+                "opcode": "0x11",
+                "method": "Lkotlin/coroutines/jvm/internal/OooO00o;->OooO0Oo(I)Ljava/lang/Integer;",
+                "instruction": "return-object",
+                "register": 0
+              }
+            ]
+          },
+          {
+            "pc": 4,
+            "opcode": "0xc",
+            "method": "Lcom/zjwh/android_wh_physicalfitness/mvi/home/fragment/HomeFragment$setAdBanner$1$openAdDeferred$1;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+            "instruction": "move-result-object",
+            "destination": 0
+          },
+          {
+            "pc": 5,
+            "opcode": "0x11",
+            "method": "Lcom/zjwh/android_wh_physicalfitness/mvi/home/fragment/HomeFragment$setAdBanner$1$openAdDeferred$1;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+            "instruction": "return-object",
+            "register": 0
+          }
+        ],
+        "return_code_unit": 5,
+        "nop_padding_code_units": 55,
+        "parameter_start_register": 5,
+        "result": {
+          "category": "reference",
+          "descriptor": "Ljava/lang/Integer;",
+          "value": 0,
+          "initialized": true
+        }
+      },
+      "events": [],
+      "resolved_references": [
+        {
+          "kind": "method",
+          "dex": "embedded-08-patched",
+          "index": 42896,
+          "signature": "Lkotlin/coroutines/jvm/internal/OooO00o;->OooO0Oo(I)Ljava/lang/Integer;"
+        },
+        {
+          "kind": "type",
+          "dex": "embedded-07-original",
+          "index": 6374,
+          "signature": "Ljava/lang/Integer;"
+        },
+        {
+          "kind": "method",
+          "dex": "embedded-07-original",
+          "index": 35935,
+          "signature": "Ljava/lang/Integer;-><init>(I)V"
+        }
+      ]
+    },
+    {
+      "signature": "Lcom/zjwh/android_wh_physicalfitness/mvi/home/fragment/SportFragment$setAdBanner$1$openAdDeferred$1;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "behavior": "returns initialized boxed Integer(0), verified through original embedded-07 helper constructor",
+      "execution": {
+        "instructions": [
+          {
+            "pc": 0,
+            "opcode": "0x12",
+            "method": "Lcom/zjwh/android_wh_physicalfitness/mvi/home/fragment/SportFragment$setAdBanner$1$openAdDeferred$1;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+            "instruction": "const/4",
+            "destination": 0,
+            "literal": 0
+          },
+          {
+            "pc": 1,
+            "opcode": "0x71",
+            "method": "Lcom/zjwh/android_wh_physicalfitness/mvi/home/fragment/SportFragment$setAdBanner$1$openAdDeferred$1;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+            "instruction": "invoke-static",
+            "registers": [
+              0
+            ],
+            "called": "Lkotlin/coroutines/jvm/internal/OooO00o;->OooO0Oo(I)Ljava/lang/Integer;",
+            "helper_trace": [
+              {
+                "pc": 0,
+                "opcode": "0x22",
+                "method": "Lkotlin/coroutines/jvm/internal/OooO00o;->OooO0Oo(I)Ljava/lang/Integer;",
+                "instruction": "new-instance",
+                "destination": 0,
+                "type": "Ljava/lang/Integer;"
+              },
+              {
+                "pc": 2,
+                "opcode": "0x70",
+                "method": "Lkotlin/coroutines/jvm/internal/OooO00o;->OooO0Oo(I)Ljava/lang/Integer;",
+                "instruction": "invoke-direct",
+                "registers": [
+                  0,
+                  1
+                ],
+                "called": "Ljava/lang/Integer;-><init>(I)V"
+              },
+              {
+                "pc": 5,
+                "opcode": "0x11",
+                "method": "Lkotlin/coroutines/jvm/internal/OooO00o;->OooO0Oo(I)Ljava/lang/Integer;",
+                "instruction": "return-object",
+                "register": 0
+              }
+            ]
+          },
+          {
+            "pc": 4,
+            "opcode": "0xc",
+            "method": "Lcom/zjwh/android_wh_physicalfitness/mvi/home/fragment/SportFragment$setAdBanner$1$openAdDeferred$1;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+            "instruction": "move-result-object",
+            "destination": 0
+          },
+          {
+            "pc": 5,
+            "opcode": "0x11",
+            "method": "Lcom/zjwh/android_wh_physicalfitness/mvi/home/fragment/SportFragment$setAdBanner$1$openAdDeferred$1;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+            "instruction": "return-object",
+            "register": 0
+          }
+        ],
+        "return_code_unit": 5,
+        "nop_padding_code_units": 55,
+        "parameter_start_register": 5,
+        "result": {
+          "category": "reference",
+          "descriptor": "Ljava/lang/Integer;",
+          "value": 0,
+          "initialized": true
+        }
+      },
+      "events": [],
+      "resolved_references": [
+        {
+          "kind": "method",
+          "dex": "embedded-08-patched",
+          "index": 42896,
+          "signature": "Lkotlin/coroutines/jvm/internal/OooO00o;->OooO0Oo(I)Ljava/lang/Integer;"
+        },
+        {
+          "kind": "type",
+          "dex": "embedded-07-original",
+          "index": 6374,
+          "signature": "Ljava/lang/Integer;"
+        },
+        {
+          "kind": "method",
+          "dex": "embedded-07-original",
+          "index": 35935,
+          "signature": "Ljava/lang/Integer;-><init>(I)V"
+        }
+      ]
+    }
+  ]
+}

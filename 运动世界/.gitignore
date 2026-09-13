@@ -1,0 +1,4 @@
+.analysis/
+output/
+*.apk
+**/__pycache__/

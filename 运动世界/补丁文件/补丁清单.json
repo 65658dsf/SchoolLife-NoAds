@@ -1,0 +1,240 @@
+{
+  "schema": "inplace-code-item-patches-v1",
+  "container_size": 76632416,
+  "source_sha256": "7fef0c676c81467c170650383ab0403386dab3e907ffcbd19ab8592fa45379bd",
+  "patched_sha256": "1921be8fd3ec7d3695f555fa47529f9e39f0e406a6fe0c1af056bc45bf1d62bb",
+  "changed_bytes": 1031,
+  "patch_count": 5,
+  "verified": {
+    "same_container_length": true,
+    "all_non_target_bytes_identical": true,
+    "indices_and_class_data_unchanged": true,
+    "protected_prefixes_unchanged": true,
+    "native_and_abstract_methods_unchanged": true
+  },
+  "checksums": "Not changed by this engine; packaging owns any container checksum repair.",
+  "dexes": [
+    {
+      "name": "embedded-08.dex",
+      "original_base": 62895324,
+      "size": 8743420,
+      "protected_prefix": 4096,
+      "recovered_sha256": "eef2374d728f696088f35b1e44e380c99a38679b57c8b0cdbf568c5e199b6617"
+    }
+  ],
+  "patches": [
+    {
+      "dex": "embedded-08.dex",
+      "method_idx": 4241,
+      "signature": "Lcom/zjwh/android_wh_physicalfitness/advertise/AdManager;->checkCanLoad(Lcom/zjwh/android_wh_physicalfitness/advertise/AdPosition;Z)Z",
+      "reason": "Deny ad scheduling queries from lifecycle callers. The actual loadSplash method is retained, including its onAdOff and onAdTimeNot continuation callbacks. This is not a replacement for completing those callbacks.",
+      "access_flags": 17,
+      "code_relative_offset": 1644420,
+      "original_base": 62895324,
+      "original_offset": 64539744,
+      "original_end_exclusive": 64540360,
+      "code_header_before": {
+        "offset": 1644420,
+        "registers_size": 14,
+        "ins_size": 3,
+        "outs_size": 6,
+        "tries_size": 0,
+        "debug_info_off": 0,
+        "insns_size": 300,
+        "insns_off": 1644436,
+        "insns_end": 1645036,
+        "end": 1645036
+      },
+      "code_header_after": {
+        "registers_size": 14,
+        "ins_size": 3,
+        "outs_size": 6,
+        "tries_size": 0,
+        "debug_info_off": 0,
+        "insns_size": 300
+      },
+      "replacement_code_units": 2,
+      "nop_padding_code_units": 298,
+      "retired_exception_tail_bytes": 0,
+      "replacement_hex": "12000f00",
+      "original_hex": "0e00030006000000000000002c0100001a0078677120b0a70c0071005a8500000c006202f45c7110ada700006203ed5c6e40bc10023c0c006e10dc1000000b026e10dd1000000b046e10de1000000a006206d75c6e10b4a40c000a07440606071a0716971a0875162b06f000000012102900ea006200e85c6e10fd1000000a002900e2006206e85c6e10fb1006000a0639062500380d23006209c35d6e10221209000c096e10e10009000c091a0a1e187140998489a77120d1a432000c037120d1a454000c047110caa400000c05120207b007c17406a010000001602900b4006206e85c6e10f91006000a063906f7ff380df5ff6209c35d6e10221209000c096e10e10009000c091a0a1a187140998489a77120d1a432000c037120d1a454000c047110caa400000c05120207b007c17406a010000028d26206e85c6e10fe1006000a063906cbff380dc9ff6209c35d6e10221209000c096e10e10009000c091a0a1d187140998489a77120d1a432000c037120d1a454000c047110caa400000c05120207b007c17406a010000028a66206e85c6e10fa1006000a0639069fff380d9dff6209c35d6e10221209000c096e10e10009000c091a0a1b187140998489a77120d1a432000c037120d1a454000c047110caa400000c05120207b007c17406a010000029007aff6206e85c6e10fc1006000a06390672ff380d70ff6209c35d6e10221209000c096e10e10009000c091a0a1c187140998489a77120d1a432000c037120d1a454000c047110caa400000c05120207b007c17406a010000029004dff0f0000000001060001000000c100000094000000680000003c0000000e00000006000000",
+      "patched_hex": "0e00030006000000000000002c01000012000f000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "changed_bytes": 490
+    },
+    {
+      "dex": "embedded-08.dex",
+      "method_idx": 4246,
+      "signature": "Lcom/zjwh/android_wh_physicalfitness/advertise/AdManager;->isSlotAllowed(Ljava/util/List;II)Z",
+      "reason": "Route existing SDK slots through their existing blocking policy. AdManager.loadSplash calls onAdOff; both cold SplashActivity and hot AdActivity callbacks call startJump. TianMu clears/releases its container; AdGain reports slot_not_allowed and clears only its SDK slide through the normal failure result.",
+      "access_flags": 17,
+      "code_relative_offset": 1645096,
+      "original_base": 62895324,
+      "original_offset": 64540420,
+      "original_end_exclusive": 64540582,
+      "code_header_before": {
+        "offset": 1645096,
+        "registers_size": 9,
+        "ins_size": 4,
+        "outs_size": 4,
+        "tries_size": 0,
+        "debug_info_off": 0,
+        "insns_size": 73,
+        "insns_off": 1645112,
+        "insns_end": 1645258,
+        "end": 1645258
+      },
+      "code_header_after": {
+        "registers_size": 9,
+        "ins_size": 4,
+        "outs_size": 4,
+        "tries_size": 0,
+        "debug_info_off": 0,
+        "insns_size": 73
+      },
+      "replacement_code_units": 2,
+      "nop_padding_code_units": 71,
+      "retired_exception_tail_bytes": 0,
+      "replacement_hex": "12000f00",
+      "original_hex": "090004000400000000000000490000001a0004a87120b0a706006200f45c6e40ba1060870c06721058a606000a071208380703000f081f06c21f20672820121038070d0007671f072820721005a607000a0738070400010828247210cca406000c06721039a606000a073807f6ff72103aa606000c071f0721086e104c2307000c07380707006e10cea407000b0128031601010016030000310701033907e3ff0f08",
+      "patched_hex": "0900040004000000000000004900000012000f0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "changed_bytes": 129
+    },
+    {
+      "dex": "embedded-08.dex",
+      "method_idx": 4591,
+      "signature": "Lcom/zjwh/android_wh_physicalfitness/advertise/guandian/GuandianAdProvider;->loadVideoAd(Landroid/app/Activity;Ljava/lang/String;Lkotlin/jvm/functions/Function2;)V",
+      "reason": "Reward video bypasses isSlotAllowed. Its original onAdFailed callback invokes adSuccess(Boolean.FALSE, Boolean.FALSE), then clears easyRewardVideoAdLoading. Return the same failure tuple and clear that flag before calling back. Never report exposure, completion, or a server reward. No SDK object is created.",
+      "access_flags": 17,
+      "code_relative_offset": 1671892,
+      "original_base": 62895324,
+      "original_offset": 64567216,
+      "original_end_exclusive": 64567474,
+      "code_header_before": {
+        "offset": 1671892,
+        "registers_size": 27,
+        "ins_size": 4,
+        "outs_size": 12,
+        "tries_size": 0,
+        "debug_info_off": 0,
+        "insns_size": 121,
+        "insns_off": 1671908,
+        "insns_end": 1672150,
+        "end": 1672150
+      },
+      "code_header_after": {
+        "registers_size": 27,
+        "ins_size": 4,
+        "outs_size": 12,
+        "tries_size": 0,
+        "debug_info_off": 0,
+        "insns_size": 121
+      },
+      "replacement_code_units": 11,
+      "nop_padding_code_units": 110,
+      "retired_exception_tail_bytes": 0,
+      "replacement_hex": "12006a008c5d08001a00620119fd72309ea710010e00",
+      "original_hex": "1b0004000c0000000000000079000000080c1800080d19001a00c5667120b0a70c001a006ae27120b0a70d001a00896708091a007120b0a7090063008c5d380003000e006200f45c6201095d122212037153c21010230c006e10dc1000000b046e10dd1000000b066e10de1000000a086200ddb17120d1a454000c147120d1a476000c157110caa408000c16121f13100000131200001a130000070e0811010074096a830e000c02620301b26e3070832003220ecf207010aaa70e00220f0604220b720512021a03611507b008091a0007ea08100e0007be080b1800760ccd1100007040340bcfde080010005b0f5cfd12106a008c5d1a0061156e202b0b0f000e00",
+      "patched_hex": "1b0004000c000000000000007900000012006a008c5d08001a00620119fd72309ea710010e0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "changed_bytes": 198
+    },
+    {
+      "dex": "embedded-08.dex",
+      "method_idx": 18412,
+      "signature": "Lcom/zjwh/android_wh_physicalfitness/mvi/home/fragment/HomeFragment$setAdBanner$1$openAdDeferred$1;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "reason": "Resolve only the CMCC advertisement enable query to Integer(0); the original coroutine clears cachedCmccBanners, keeps cachedOpsBanners, and completes the banner update.",
+      "access_flags": 17,
+      "code_relative_offset": 2652100,
+      "original_base": 62895324,
+      "original_offset": 65547424,
+      "original_end_exclusive": 65547562,
+      "code_header_before": {
+        "offset": 2652100,
+        "registers_size": 7,
+        "ins_size": 2,
+        "outs_size": 3,
+        "tries_size": 0,
+        "debug_info_off": 0,
+        "insns_size": 61,
+        "insns_off": 2652116,
+        "insns_end": 2652238,
+        "end": 2652238
+      },
+      "code_header_after": {
+        "registers_size": 7,
+        "ins_size": 2,
+        "outs_size": 3,
+        "tries_size": 0,
+        "debug_info_off": 0,
+        "insns_size": 61
+      },
+      "replacement_code_units": 6,
+      "nop_padding_code_units": 55,
+      "retired_exception_tail_bytes": 0,
+      "replacement_hex": "1200711090a700000c001100",
+      "original_hex": "0700020003000000000000003d00000071008ba700000c005251df9b120212133801100033310600711018a7060028212206bd1f1a00cd717020c3a406002706711018a706006206c4b41a012e16711090a702000c046e30448616040c065953df9b71203fa856000c063306030011001f06c01f380606006e10c5a406000a02711090a702000c061106",
+      "patched_hex": "0700020003000000000000003d0000001200711090a700000c0011000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "changed_bytes": 107
+    },
+    {
+      "dex": "embedded-08.dex",
+      "method_idx": 18870,
+      "signature": "Lcom/zjwh/android_wh_physicalfitness/mvi/home/fragment/SportFragment$setAdBanner$1$openAdDeferred$1;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "reason": "Resolve only the CMCC advertisement enable query to Integer(0); the original coroutine clears cachedCmccBanners, keeps cachedOpsBanners, and completes the banner update.",
+      "access_flags": 17,
+      "code_relative_offset": 2681580,
+      "original_base": 62895324,
+      "original_offset": 65576904,
+      "original_end_exclusive": 65577042,
+      "code_header_before": {
+        "offset": 2681580,
+        "registers_size": 7,
+        "ins_size": 2,
+        "outs_size": 3,
+        "tries_size": 0,
+        "debug_info_off": 0,
+        "insns_size": 61,
+        "insns_off": 2681596,
+        "insns_end": 2681718,
+        "end": 2681718
+      },
+      "code_header_after": {
+        "registers_size": 7,
+        "ins_size": 2,
+        "outs_size": 3,
+        "tries_size": 0,
+        "debug_info_off": 0,
+        "insns_size": 61
+      },
+      "replacement_code_units": 6,
+      "nop_padding_code_units": 55,
+      "retired_exception_tail_bytes": 0,
+      "replacement_hex": "1200711090a700000c001100",
+      "original_hex": "0700020003000000000000003d00000071008ba700000c005251799c120212133801100033310600711018a7060028212206bd1f1a00cd717020c3a406002706711018a706006206c4b41a012e16711090a702000c046e30448616040c065953799c71203fa856000c063306030011001f06c01f380606006e10c5a406000a02711090a702000c061106",
+      "patched_hex": "0700020003000000000000003d0000001200711090a700000c0011000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "changed_bytes": 107
+    }
+  ],
+  "outer_header_checksum_repair": {
+    "offset": 8,
+    "size": 24,
+    "before_hex": "04c6a2123b6912e1866908d65409c58399690762315fd0a2",
+    "after_hex": "35b466dadb774f4211c9426c4991e2cc6be910c1ac4b0394",
+    "purpose": "Standard outer DEX SHA-1 and Adler-32; embedded encrypted headers remain byte-identical."
+  },
+  "final_sha256": "a49e20a7b6d4f6d1fa3788081a8cb62625957fa9fd5b1df31a1fa8ddbfc1cf50",
+  "readable_patched_dex_sha256": "8490f563a94ea56916b01883a0abb2a9b495e9ebc4b9b6b9a204d44b379c21c4",
+  "changed_bytes_including_outer_checksums": 1055,
+  "scope": {
+    "changed_methods": 5,
+    "unchanged_native_declarations": true,
+    "unchanged_indices_offsets_sizes": true,
+    "unchanged_resources_and_libraries": true,
+    "reward_result": [
+      false,
+      false
+    ],
+    "cmcc_ad_switch": 0,
+    "shared_resource_api_and_operational_banners": "retained",
+    "runtime_verified": false
+  }
+}

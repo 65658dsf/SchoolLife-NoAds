@@ -1,0 +1,182 @@
+{
+  "scope": "Offline config integrity and reconstructed local certificate guard; no Android runtime verification",
+  "passed": 26,
+  "checks": [
+    {
+      "name": "first_build_preserved_original_configuration",
+      "passed": true
+    },
+    {
+      "name": "original_certificate_matches_pinned_original",
+      "passed": true
+    },
+    {
+      "name": "local_signer_differs_from_original",
+      "passed": true
+    },
+    {
+      "name": "replacement_matches_actual_exported_certificate",
+      "passed": true
+    },
+    {
+      "name": "replacement_is_uppercase_md5_not_NONE",
+      "passed": true
+    },
+    {
+      "name": "all_other_configuration_values_preserved",
+      "passed": true
+    },
+    {
+      "name": "configuration_order_whitespace_and_length_preserved",
+      "passed": true
+    },
+    {
+      "name": "config_cipher_roundtrip",
+      "passed": true
+    },
+    {
+      "name": "container_length_preserved",
+      "passed": true
+    },
+    {
+      "name": "header_and_ciphertext_outside_certificate_unchanged",
+      "passed": true
+    },
+    {
+      "name": "dex_magic_preserved",
+      "passed": true
+    },
+    {
+      "name": "all_existing_ad_patch_bytes_preserved",
+      "passed": true
+    },
+    {
+      "name": "outer_sha1_valid",
+      "passed": true
+    },
+    {
+      "name": "outer_adler32_valid",
+      "passed": true
+    },
+    {
+      "name": "comparison_1",
+      "passed": true
+    },
+    {
+      "name": "comparison_2",
+      "passed": true
+    },
+    {
+      "name": "comparison_3",
+      "passed": true
+    },
+    {
+      "name": "comparison_4",
+      "passed": true
+    },
+    {
+      "name": "comparison_5",
+      "passed": true
+    },
+    {
+      "name": "comparison_6",
+      "passed": true
+    },
+    {
+      "name": "existing_NONE_or_empty_result_semantics_7",
+      "passed": true
+    },
+    {
+      "name": "existing_NONE_or_empty_result_semantics_8",
+      "passed": true
+    },
+    {
+      "name": "existing_NONE_or_empty_result_semantics_9",
+      "passed": true
+    },
+    {
+      "name": "existing_NONE_or_empty_result_semantics_10",
+      "passed": true
+    },
+    {
+      "name": "existing_NONE_or_empty_result_semantics_11",
+      "passed": true
+    },
+    {
+      "name": "existing_NONE_or_empty_result_semantics_12",
+      "passed": true
+    }
+  ],
+  "certificate_md5": "6693563C906323213F14A44F14264E62",
+  "config_offset": "0x103b8",
+  "config_length": 254,
+  "certificate_cipher_range": [
+    "0x103c2",
+    "0x103e2"
+  ],
+  "cipher_changed_bytes": 28,
+  "native_comparison_evidence": "D:\\Coding\\LemonDev\\反编译\\运动世界\\.analysis\\startup-review\\strings64\\certificate-compare-tests.json",
+  "cases": [
+    {
+      "expected": "C62C38BE109D2A72528C307BDFC21E34",
+      "actual": "C62C38BE109D2A72528C307BDFC21E34",
+      "reject": false
+    },
+    {
+      "expected": "C62C38BE109D2A72528C307BDFC21E34",
+      "actual": "6693563C906323213F14A44F14264E62",
+      "reject": true
+    },
+    {
+      "expected": "C62C38BE109D2A72528C307BDFC21E34",
+      "actual": "0123456789ABCDEF0123456789ABCDEF",
+      "reject": true
+    },
+    {
+      "expected": "6693563C906323213F14A44F14264E62",
+      "actual": "C62C38BE109D2A72528C307BDFC21E34",
+      "reject": true
+    },
+    {
+      "expected": "6693563C906323213F14A44F14264E62",
+      "actual": "6693563C906323213F14A44F14264E62",
+      "reject": false
+    },
+    {
+      "expected": "6693563C906323213F14A44F14264E62",
+      "actual": "0123456789ABCDEF0123456789ABCDEF",
+      "reject": true
+    },
+    {
+      "expected": "NONE",
+      "actual": "C62C38BE109D2A72528C307BDFC21E34",
+      "reject": false
+    },
+    {
+      "expected": "NONE",
+      "actual": "6693563C906323213F14A44F14264E62",
+      "reject": false
+    },
+    {
+      "expected": "NONE",
+      "actual": "0123456789ABCDEF0123456789ABCDEF",
+      "reject": false
+    },
+    {
+      "expected": "NONE",
+      "actual": "",
+      "reject": false
+    },
+    {
+      "expected": "C62C38BE109D2A72528C307BDFC21E34",
+      "actual": "",
+      "reject": false
+    },
+    {
+      "expected": "6693563C906323213F14A44F14264E62",
+      "actual": "",
+      "reject": false
+    }
+  ],
+  "runtime_verified": false
+}
